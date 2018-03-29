@@ -1,23 +1,10 @@
-CREATE DATABASE facebook_poster;
+CREATE DATABASE betwixtDB;
 
-USE facebook_poster;
+USE betwixtDB;
 
-CREATE TABLE event (
-    id
-    client_id
-    title
-    DATE
-    START
-    END
-    DESCRIPTION
-    location
-    public
-    posted
-);
-
-CREATE TABLE client (
-    id 
-    name
-    email
-    password
+CREATE TABLE user (
+    id INT NOT NULL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR NOT NULL,
+    password VARCHAR NOT NULL
 );
