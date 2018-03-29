@@ -4,7 +4,7 @@ class AddressForm extends Component {
     render() {
         return (
             <form>
-                <div className="form-group ">
+                <div className="form-group">
                     <input type="text" className="form-control" id="addressInput" autocomplete="on" placeholder="Enter an address" />
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

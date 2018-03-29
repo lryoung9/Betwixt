@@ -4,8 +4,8 @@ import './Footer.css';
 class Footer extends Component {
     render() {
         return (
-            <div className="footer">
-                <nav className="navbar fixed-bottom justify-content-center navbar-light">
+            <div>
+                <nav className="footer fixed-bottom navbar-light">
                     <span class="navbar-text">
                         Product by Lydia Young
                     </span>

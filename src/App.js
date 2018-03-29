@@ -8,11 +8,11 @@ import './App.css';
 
 const App = () => (
       <div className="Container">
-        <div className="navbar">
+        <div className="header navbar">
           <Header />
           <Account />
         </div>
-        <div className="row justify-content-around">
+        <div className="content row justify-content-around">
           <About />
           <Maps />
         </div>
