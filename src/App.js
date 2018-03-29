@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRourer as Router, Route } from "react-router-dom";
 import Header from './Header/Header.js';
 import Account from './Account/Account.js';
 import About from './About/About.js';
@@ -7,17 +8,21 @@ import Footer from './Footer/Footer.js'
 import './App.css';
 
 const App = () => (
-      <div className="Container">
-        <div className="header navbar">
-          <Header />
-          <Account />
-        </div>
-        <div className="content row justify-content-around">
-          <About />
-          <Maps />
-        </div>
-        <Footer />
+  <Router>
+    <div className="Container">
+      <div className="header navbar">
+        <Header />
+        <Account />
       </div>
+
+      <div className="content row justify-content-around">
+        <Route exact path="/" component={About, Maps} />
+      </div>
+
+      <Footer />
+    </div>
+  </Router>
+
 );
 
 export default App;
