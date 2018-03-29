@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import Header from './Header/Header.js';
+import Account from './Account/Account.js';
+import About from './About/About.js';
+import Maps from './Map/Map.js';
+import Footer from './Footer/Footer.js'
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+const App = () => (
+      <div className="Container">
+        <div className="navbar">
+          <Header />
+          <Account />
+        </div>
+        <div className="row justify-content-around">
+          <About />
+          <Maps />
+        </div>
+        <Footer />
       </div>
-    );
-  }
-}
+);
 
 export default App;
