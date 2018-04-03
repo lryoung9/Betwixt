@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Signup from '../OAuth/SignupModal';
 import './Account.css';
+import Login from '../OAuth/LoginModal';
 
 class Account extends Component {
     state = {
@@ -20,10 +21,11 @@ class Account extends Component {
             <div className="navbtn">
                 {/* Button trigger for sign-up modal*/}
                 <button onClick={this.openModal} type="button" className="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#signUp">Sign Up</button>
-                <Signup isVisible={this.state.modal}/>
+                <Signup isVisible={this.state.modal} />
 
                 {/* button trigger for log-in modal */}
-                <button type="button" className="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="logIn">Log in</button>
+                <button onClick={this.openModal} type="button" className="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="logIn">Log in</button>
+                <Login isVisible={this.state.modal} />
             </div>
         );
     }

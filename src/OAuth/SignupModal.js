@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Account from "../Account/Account"
+import Account from "../Account/Account";
 
 const Signup = () => (
     <div className="modal fade" id="signUp" tabIndex="-1" aria-hidden="true">
@@ -27,7 +27,7 @@ const Signup = () => (
                         </div>
                         <div className="form-group">
                             <label for="passwordInput">Password</label>
-                            <input type="password" className="form-control" id="passwordInput" placeholder="Create Password" />
+                            <input type="password" className="form-control" id="passwordInput" placeholder="Create a password" />
                         </div>
                         
                     </form>
