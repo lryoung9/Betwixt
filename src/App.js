@@ -2,9 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from './Header/Header.js';
 import Account from './Account/Account.js';
-import About from './About/About.js';
-import Maps from './Map/Map.js';
-import Footer from './Footer/Footer.js'
+import MainPage from './MainPage/MainPage.js';
+import Footer from './Footer/Footer.js';
 import './App.css';
 
 const App = () => (
@@ -16,7 +15,7 @@ const App = () => (
       </div>
 
       <div className="content row justify-content-around">
-        <Route exact path="/" component={About, Maps} />
+        <Route exact path="/" component={ MainPage } />
       </div>
 
       <Footer />

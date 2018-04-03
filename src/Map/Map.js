@@ -24,11 +24,9 @@ class Maps extends Component {
 
   render() {
     return (
-        <div className="card col-sm-7 text-center align-middle">
-            <div className="card-body">
-              <AddressForm />
-            </div>
-        </div>
+      <div className="card-body">
+        <AddressForm />
+      </div>
     );
   }
 }
