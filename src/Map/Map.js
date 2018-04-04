@@ -46,24 +46,15 @@ class SimpleMap extends Component {
       service.getDetails(request, (details, status) => {
         window.google.maps.event.addListener(marker, 'click', () => {
           infoWindow.setContent(
-            `<strong>${place.name}</strong>
-            <br>${place.url}
+            `<a href="${place.website}"><strong>${place.name}</strong></a>
             <br>${place.formatted_phone_number}
+            <br><a href="${place.url}">${place.formatted_address}</a>
             <br>Hours: ${place.opening_hours.weekday_text}`);
           infoWindow.open(map, marker);
       })
       })
     });
-  }
-
-  //   var request = { reference: place.reference };
-  //   service.getDetails(request, function(details, status) {
-  //     google.maps.event.addListener(marker, 'click', function() {
-  //       infowindow.setContent(details.name + "<br />" + details.formatted_address +"<br />" + details.website + "<br />" + details.rating + "<br />" + details.formatted_phone_number);
-  //       infowindow.open(map, this);
-  //     });
-  //   });
-  // }
+  };
 
   findNearbyPlaces = () => {
     const service = new window.google.maps.places.PlacesService(this.map);
