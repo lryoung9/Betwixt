@@ -48,7 +48,6 @@ class SimpleMap extends Component {
           // console.log("Details:" + JSON.stringify(details))
           infoWindow.setContent(
              `<strong>${place.name}</strong>
-             <br>${place.types}
              <br>${place.vicinity}
              `);
              infoWindow.open(map, marker);
@@ -65,7 +64,7 @@ class SimpleMap extends Component {
     const service = new window.google.maps.places.PlacesService(this.map);
     service.nearbySearch({
       location: this.state.center,
-      radius: 10000,
+      radius: 1000,
       keyword: ['store']
     }, this.handlePlacesResults)
   };
