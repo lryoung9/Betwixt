@@ -126,7 +126,7 @@ class SimpleMap extends Component {
       <div className="map">
         <GoogleMapReact
         bootstrapURLKeys={{
-          key: "AIzaSyD_7tj3w8diAGo3y0b_VLXavRqvFBQUIBs",
+          key: "AIzaSyAXg5oqr-oT6WGZ0JHEIJUH3EqNGKP2XoA",
           libraries: "geometry,places"
         }}
         center={this.state.center}
