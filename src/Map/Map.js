@@ -46,11 +46,12 @@ class SimpleMap extends Component {
       service.getDetails(request, (details, status) => {
         window.google.maps.event.addListener(marker, 'click', () => {
           infoWindow.setContent(
-            `<a href="${place.website}" target="_blank"><strong>${place.name}</strong></a>
-            <br>${place.formatted_phone_number}
+            `<a href="${details.website}" target="_blank"><strong>${place.name}</strong></a>
+            <br>${details.formatted_phone_number}
             <br><a href="${place.url}" target="_blank">${place.formatted_address}</a>
             <br>Hours: ${place.opening_hours.weekday_text}`);
           infoWindow.open(map, marker);
+          console.log(details)
       })
       })
     });
