@@ -11,7 +11,9 @@ class SimpleMap extends Component {
     originLatLng: "",
     secondaryAddress: "",
     secondaryLatLng: "",
-    isSecondaryAddressVisible: false
+    isSecondaryAddressVisible: false,
+    // Denver's lat/long
+    center: {lat: 39.7392, lng: -104.9903}
   };
 
   // takes in origin address
@@ -30,33 +32,53 @@ class SimpleMap extends Component {
     this.setState({secondaryAddress: value});
   };
 
-  // finds mid-point between origin address and second address
-  handleFindBetwixt = (event) => {
-    event.preventDefault();
+  getMidpoint = () => {
+    const origin = new window.google.maps.LatLng(this.state.originLatLng.lat, this.state.originLatLng.lng);
+    const secondary = new window.google.maps.LatLng(this.state.secondaryLatLng.lat, this.state.secondaryLatLng.lng);
+    const midpoint = window.google.maps.geometry.spherical.interpolate(
+      origin,
+      secondary,
+      0.5
+    );
+    this.setState({ ...this.state, center: {lat: midpoint.lat(), lng: midpoint.lng()}})
+    debugger;
+  };
+  
+  getSecondaryLatLng = () => {
     const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({address: this.state.originAddress}, (results, status) => {
-      results[0].geometry.location.lng()
-      this.setState({
-        originLatLng: {
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng()
-        }
-      });
-    });
     geocoder.geocode({address: this.state.secondaryAddress}, (results, status) => {
-      results[0].geometry.location.lng()
       this.setState({
+        ...this.state,
         secondaryLatLng: {
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng()
         }
-      });
+      }, this.getMidpoint
+    );
     });
+  };
+
+  getOriginLatLng = () => {
+    const geocoder = new window.google.maps.Geocoder();
+    geocoder.geocode({address: this.state.originAddress}, (results, status) => {
+      this.setState({
+        ...this.state,
+        originLatLng: {
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng()
+        }
+      }, this.getSecondaryLatLng
+    );
+    });
+  };
+
+  // finds mid-point between origin address and second address
+  handleFindBetwixt = (event) => {
+    event.preventDefault();
+    this.getOriginLatLng();
   }
 
   static defaultProps = {
-    // Denver's lat/long
-    center: {lat: 39.7392, lng: -104.9903},
     zoom: 11
   };
  
@@ -68,7 +90,7 @@ class SimpleMap extends Component {
           key: "AIzaSyD_7tj3w8diAGo3y0b_VLXavRqvFBQUIBs",
           libraries: "geometry,places"
         }}
-        defaultCenter={this.props.center}
+        center={this.state.center}
         defaultZoom={this.props.zoom}
         >
         {this.state.isSecondaryAddressVisible ? <SecondAddressForm
