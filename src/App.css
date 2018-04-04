@@ -2,3 +2,13 @@
     margin: 45px;
     margin-bottom: 75px;
 }
+
+.navbtn {
+    bottom: 36px;
+    right: 30px;
+    position: absolute;
+}
+
+.navbar {
+    position: relative;
+}
