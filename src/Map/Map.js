@@ -41,12 +41,28 @@ class SimpleMap extends Component {
         map,
         position: place.geometry.location
       });
-      window.google.maps.event.addListener(marker, 'click', () => {
-        infoWindow.setContent(place.name);
-        infoWindow.open(map, marker);
+      const request = { reference: place.reference };
+      service.getDetails(request, (details, status) => {
+        window.google.maps.event.addListener(marker, 'click', () => {
+          infoWindow.setContent(
+            `<strong>${place.name}</strong>
+            <br>${place.url}
+            <br>${place.formatted_phone_number}
+            <br>Hours: ${place.opening_hours.weekday_text}`);
+          infoWindow.open(map, marker);
+      })
       })
     });
   }
+
+  //   var request = { reference: place.reference };
+  //   service.getDetails(request, function(details, status) {
+  //     google.maps.event.addListener(marker, 'click', function() {
+  //       infowindow.setContent(details.name + "<br />" + details.formatted_address +"<br />" + details.website + "<br />" + details.rating + "<br />" + details.formatted_phone_number);
+  //       infowindow.open(map, this);
+  //     });
+  //   });
+  // }
 
   findNearbyPlaces = () => {
     const service = new window.google.maps.places.PlacesService(this.map);
