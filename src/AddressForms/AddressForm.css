@@ -1,0 +1,14 @@
+.mapOverlay {
+    display: inherit;
+    width: 50%;
+    margin-top: 50px;
+}
+
+.btn {
+    margin: 10px;
+    background-color: white;
+}
+
+.secure {
+    color: red;
+}
