@@ -7,13 +7,14 @@ import google_map from 'google-map-react/lib/google_map';
 
 class SimpleMap extends Component {
   state = {
+    zoom: 11,
+    // Denver's lat/long
+    center: {lat: 39.7392, lng: -104.9903},
     originAddress: "",
     originLatLng: "",
     secondaryAddress: "",
     secondaryLatLng: "",
-    isSecondaryAddressVisible: false,
-    // Denver's lat/long
-    center: {lat: 39.7392, lng: -104.9903}
+    isSecondaryAddressVisible: false
   };
 
   // takes in origin address
@@ -77,7 +78,7 @@ class SimpleMap extends Component {
       secondary,
       0.5
     );
-    this.setState({ ...this.state, center: {lat: midpoint.lat(), lng: midpoint.lng()}}, this.findNearbyPlaces)
+    this.setState({ ...this.state, zoom: 14, center: {lat: midpoint.lat(), lng: midpoint.lng()}}, this.findNearbyPlaces)
     
   };
   
@@ -119,10 +120,6 @@ class SimpleMap extends Component {
     this.map = map;
     this.infoWindow = new window.google.maps.InfoWindow();
   };
-  
-  static defaultProps = {
-    zoom: 11
-  };
  
   render() {
     return (
@@ -133,7 +130,7 @@ class SimpleMap extends Component {
           libraries: "geometry,places"
         }}
         center={this.state.center}
-        defaultZoom={this.props.zoom}
+        zoom={this.state.zoom}
         onGoogleApiLoaded={this.assignInstanceVariables}
         yesIWantToUseGoogleMapApiInternals
         >
