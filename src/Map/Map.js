@@ -41,22 +41,26 @@ class SimpleMap extends Component {
         map,
         position: place.geometry.location
       });
-      const request = { reference: place.reference };
-      const service = new window.google.maps.places.PlacesService(map);
-      service.getDetails(request, (details, status) => {
+      // const request = { placeId: place.place_id };
+      // const service = new window.google.maps.places.PlacesService(map);
+      // service.getDetails(request, (details, status) => {
         window.google.maps.event.addListener(marker, 'click', () => {
+          // console.log("Details:" + JSON.stringify(details))
           infoWindow.setContent(
-            `<a href="${details.website}" target="_blank"><strong>${place.name}</strong></a>
-            <br>${details.formatted_phone_number}
-            <br><a href="${place.url}" target="_blank">${place.formatted_address}</a>
-            <br>Hours: ${place.opening_hours.weekday_text}`);
-          infoWindow.open(map, marker);
-          console.log(details)
-      })
-      })
-    });
-  };
-
+             `<strong>${place.name}</strong>
+             <br>${place.types}
+             <br>${place.vicinity}
+             `);
+             infoWindow.open(map, marker);
+             console.log(place)
+            })
+          })
+          // });
+        };
+        
+        // <br>${details.formatted_phone_number}
+        // <br><a href="${details.url}" target="_blank">${details.formatted_address}</a>
+        // <br>Hours: ${details.opening_hours.weekday_text}
   findNearbyPlaces = () => {
     const service = new window.google.maps.places.PlacesService(this.map);
     service.nearbySearch({
