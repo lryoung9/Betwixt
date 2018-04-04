@@ -42,7 +42,7 @@ class SimpleMap extends Component {
         position: place.geometry.location
       });
       const request = { reference: place.reference };
-      service = new window.google.maps.places.PlacesService(map);
+      const service = new window.google.maps.places.PlacesService(map);
       service.getDetails(request, (details, status) => {
         window.google.maps.event.addListener(marker, 'click', () => {
           infoWindow.setContent(
