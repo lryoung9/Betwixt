@@ -32,6 +32,31 @@ class SimpleMap extends Component {
     this.setState({secondaryAddress: value});
   };
 
+  // Finds nearby places
+  handlePlacesResults = (results, status) => {
+    const map = this.map;
+    const infoWindow = this.infoWindow;
+    results.map(place => {
+      const marker = new window.google.maps.Marker({
+        map,
+        position: place.geometry.location
+      });
+      window.google.maps.event.addListener(marker, 'click', () => {
+        infoWindow.setContent(place.name);
+        infoWindow.open(map, marker);
+      })
+    });
+  }
+
+  findNearbyPlaces = () => {
+    const service = new window.google.maps.places.PlacesService(this.map);
+    service.nearbySearch({
+      location: this.state.center,
+      radius: 10000,
+      keyword: ['store']
+    }, this.handlePlacesResults)
+  };
+
   getMidpoint = () => {
     const origin = new window.google.maps.LatLng(this.state.originLatLng.lat, this.state.originLatLng.lng);
     const secondary = new window.google.maps.LatLng(this.state.secondaryLatLng.lat, this.state.secondaryLatLng.lng);
@@ -40,8 +65,8 @@ class SimpleMap extends Component {
       secondary,
       0.5
     );
-    this.setState({ ...this.state, center: {lat: midpoint.lat(), lng: midpoint.lng()}})
-    debugger;
+    this.setState({ ...this.state, center: {lat: midpoint.lat(), lng: midpoint.lng()}}, this.findNearbyPlaces)
+    
   };
   
   getSecondaryLatLng = () => {
@@ -76,8 +101,13 @@ class SimpleMap extends Component {
   handleFindBetwixt = (event) => {
     event.preventDefault();
     this.getOriginLatLng();
-  }
+  };
 
+  assignInstanceVariables = ({map, maps}) => {
+    this.map = map;
+    this.infoWindow = new window.google.maps.InfoWindow();
+  };
+  
   static defaultProps = {
     zoom: 11
   };
@@ -92,6 +122,8 @@ class SimpleMap extends Component {
         }}
         center={this.state.center}
         defaultZoom={this.props.zoom}
+        onGoogleApiLoaded={this.assignInstanceVariables}
+        yesIWantToUseGoogleMapApiInternals
         >
         {this.state.isSecondaryAddressVisible ? <SecondAddressForm
             handleSecondaryAddressChange={this.handleSecondaryAddressChange}
