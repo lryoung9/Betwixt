@@ -99,6 +99,7 @@ class SimpleMap extends Component {
   getOriginLatLng = () => {
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({address: this.state.originAddress}, (results, status) => {
+      console.log(results[0]);
       this.setState({
         ...this.state,
         originLatLng: {

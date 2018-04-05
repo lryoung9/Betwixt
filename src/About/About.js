@@ -4,13 +4,19 @@ import '../App.css';
 
 const About = () => (
     <div className="card-body">
-        <h5 className="card-title">About</h5>
+        <h5 className="card-title"><strong>About</strong></h5>
         <p className="card-text">
-            Cupcake ipsum dolor sit amet tart bear claw. Pastry bonbon jujubes. Bear claw brownie cheesecake topping cheesecake candy. Halvah cake topping soufflé pastry chocolate cake icing. Brownie pie chupa chups carrot cake apple pie gummi bears. Cheesecake jelly cheesecake gummies caramels. Chocolate cake candy canes chocolate bar dessert pudding caramels. Soufflé croissant chocolate cake chocolate cake biscuit cheesecake sweet roll. Gingerbread cake tiramisu pastry muffin cake sweet roll bear claw. Cheesecake cookie jelly-o dragée jelly carrot cake caramels sweet.
-                
-            Jelly pie cotton candy pudding topping gummi bears powder cotton candy gummi bears. Marshmallow brownie halvah gingerbread candy lemon drops. Dragée oat cake lemon drops tart tootsie roll chocolate bar sweet roll apple pie. Sweet lollipop croissant dragée candy. Powder sweet roll powder liquorice. Gingerbread ice cream croissant muffin candy canes bear claw cheesecake fruitcake cheesecake. Donut pie marzipan candy canes pudding cupcake cookie. Pie muffin chocolate carrot cake pudding danish bear claw icing.
+        Whether you are meeting with friends/family, having a business lunch or trying to buy from the local classifieds sites, Betwixt will give you suggestions for the perfect meeting place in the middle.
+        <br />
+        <br />
+        First, simply enter your address or location and then choose:
+        <br />
+        <br /> (1) to enter the second address/location
+        </p>
+        <p className="text-center"><strong>or</strong></p>
+        <p>(2) choose to hide your location within a unique url that you can share for the other person to enter their location.
         </p>
     </div>
 );
-
+    
 export default About;
